@@ -11,6 +11,7 @@ int main()
   bool run = true;
   bool answering;
   char again;
+  char ht;
 
   mt19937 randomGenerator (time(0));
   
@@ -22,10 +23,21 @@ int main()
     uniform_real_distribution<float> coinFlip(0.0f, 1.0f);
     float result = coinFlip(randomGenerator);
   
-    
+    if((result >= 0.5f) && (sides == 'h')){
+        cout << "Heads! You win!" << endl;
+    }else if((result >= 0.5f) && (sides == 't')){
+        cout << "Heads! You lose!" << endl;
+    }else if((result < 0.5f) && (sides == 't')){
+        cout << "Tails! You win!" << endl;
+    }else if((result < 0.5f) && (sides == 'h')){
+        cout << "Tails! You lose!" << endl;
+    }else{
+        cout << "Something's gone wrong!\n";
+        run = false;
+    }
     answering = true;
     while(answering){
-        cout << "Roll again? (y or n)\n";
+        cout << "Flip again? (y or n)\n";
         cin >> again;
         if(again == 'n'){
             run = false;
@@ -38,4 +50,5 @@ int main()
         }
     }
   }
+  return 0;
 }
